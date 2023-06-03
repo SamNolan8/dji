@@ -10,9 +10,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id       String  @id @default(uuid())
-  email    String  @unique
-  name     String
-  password String?
+model Film {
+  id              String  @id @default(cuid())
+  filmChineseName String?
+  filmEnglishName String?
+  releaseDate     String?
+  rating          String?
+  genre           String?
+  language        String?
+  country         String?
+  filmAvatar      String?
+  filmVideo       String?
+  filmLength      String?
+  actor           Actor[]
+  filmDescription String  @db.Text
+  Director        String?
+  Screenwriter    String?
+}
+
+model Actor {
+  id          String  @id @default(cuid())
+  filmId      String
+  actorName   String?
+  actorGender String?
+  actorAvatar String?
+  actorVideo  String?
+  film        Film    @relation(fields: [filmId], references: [id], onDelete: Cascade)
 }

@@ -1,17 +1,8 @@
-import { createUser, getAllUsers } from "./libs/data"
-
+import Header from '@/app/components/header/Header'
+import Main from '@/app/Main'
 export default async function Home() {
 
-  const user = await getAllUsers()
   return (
-    <div>
-      <ul>
-        {user?.map((user) => {
-          return (
-            <li key={user.id}>{user.name}--{user.email}--{user.password}--{user.id}</li>
-          )
-        })}
-      </ul>
-    </div>
+      <Main></Main>
   )
 }
